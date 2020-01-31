@@ -1,18 +1,4 @@
 /*
-input_line = list(map(int,input().split()))
-mon = input_line[0]
-c = input_line[1]
-point = 0
-for i in range(c):
-    charge = int(input())
-    if point >= charge:
-        point -= charge
-    else:
-        mon -= charge
-        point += (charge*0.1)
-    print(str(int(mon)) + " " + str(int(point)))
-*/
-/*
 pythonは楽だけどメモリー消費が大きいので、できるだけCで書きたいけど面倒だからpythonで書きたい。（無限ループ）
 というわけでコピペして使うC言語便利ライブラリを作りました。
 */
@@ -190,15 +176,33 @@ intListElement *mapStrToInt(strListElement* sle){
     }
     return ret;
 }
+/*
+input_line = list(map(int,input().split()))
+mon = input_line[0]
+c = input_line[1]
+point = 0
+for i in range(c):
+    charge = int(input())
+    if point >= charge:
+        point -= charge
+    else:
+        mon -= charge
+        point += (charge*0.1)
+    print(str(int(mon)) + " " + str(int(point)))
+*/
 int main(int argc,char* argv[]){
-    char str[] = "12 34 56";
-    char s[] = " ";
-    strListElement* t = split(str,s);
-    puts(getStrElementValue(t,0));
-    puts(getStrElementValue(t,1));
-    puts(getStrElementValue(t,2));
-    intListElement* tint = mapStrToInt(t);
-    printf("%d\n",getintElementValue(tint,0));
-    printf("%d\n",getintElementValue(tint,1));
-    printf("%d\n",getintElementValue(tint,2));
+    intListElement* input_line = mapStrToInt(split(input()," "));
+    int mon = getintElementValue(input_line,0);
+    int c = getintElementValue(input_line,1);
+    int point = 0;
+    for(int i=0;i<c;i++){
+        int charge = Int(input());
+        if(point >= charge){
+            point -= charge;
+        }else{
+            mon -= charge;
+            point += (charge*0.1);
+        }
+        printf("%d %d\n",mon,point);
+    }
 }
